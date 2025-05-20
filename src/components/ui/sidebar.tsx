@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -156,14 +157,15 @@ const SidebarProvider = React.forwardRef<
 )
 SidebarProvider.displayName = "SidebarProvider"
 
-const Sidebar = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<"div"> & {
-    side?: "left" | "right"
-    variant?: "sidebar" | "floating" | "inset"
-    collapsible?: "offcanvas" | "icon" | "none"
-  }
->(
+// Define the props type for Sidebar, including defaultOpen
+type SidebarComponentProps = React.ComponentProps<"div"> & {
+  side?: "left" | "right";
+  variant?: "sidebar" | "floating" | "inset";
+  collapsible?: "offcanvas" | "icon" | "none";
+  defaultOpen?: boolean; // Acknowledge defaultOpen prop
+};
+
+const Sidebar = React.forwardRef<HTMLDivElement, SidebarComponentProps>(
   (
     {
       side = "left",
@@ -171,7 +173,8 @@ const Sidebar = React.forwardRef<
       collapsible = "offcanvas",
       className,
       children,
-      ...props
+      defaultOpen, // Destructure defaultOpen
+      ...restProps // Collect other props into restProps
     },
     ref
   ) => {
@@ -185,7 +188,7 @@ const Sidebar = React.forwardRef<
             className
           )}
           ref={ref}
-          {...props}
+          {...restProps} // Use restProps
         >
           {children}
         </div>
@@ -194,7 +197,7 @@ const Sidebar = React.forwardRef<
 
     if (isMobile) {
       return (
-        <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
+        <Sheet open={openMobile} onOpenChange={setOpenMobile} {...restProps}> {/* Use restProps */}
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
@@ -220,6 +223,7 @@ const Sidebar = React.forwardRef<
         data-collapsible={state === "collapsed" ? collapsible : ""}
         data-variant={variant}
         data-side={side}
+        // Note: restProps are not spread on this outer div in this branch
       >
         {/* This is what handles the sidebar gap on desktop */}
         <div
@@ -244,7 +248,7 @@ const Sidebar = React.forwardRef<
               : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
             className
           )}
-          {...props}
+          {...restProps} // Use restProps here
         >
           <div
             data-sidebar="sidebar"
