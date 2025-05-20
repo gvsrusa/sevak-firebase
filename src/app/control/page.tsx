@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, RotateCcw, Hand } from "lucide-react";
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, RotateCcw, Hand, Gamepad2 } from "lucide-react";
 import { toast } from '@/hooks/use-toast';
 
 export default function ManualControlPage() {
@@ -101,22 +101,3 @@ export default function ManualControlPage() {
     </div>
   );
 }
-
-// Dummy Gamepad2 icon as it's not in lucide-react, using Hand icon for stop
-// If Gamepad2 was available:
-// import { Gamepad2 } from "lucide-react";
-// Otherwise, use a generic control icon or an SVG.
-// For this example, using Gamepad2 in comments as placeholder.
-// Using Hand icon from lucide-react for stop.
-
-// Correcting for Gamepad2 (assuming it's meant to be in lucide-react, if not a placeholder is better)
-// Using GamepadIcon as available in Lucide
-import { GamepadIcon } from 'lucide-react'; // Re-importing for clarity
-// In CardTitle, replace <Gamepad2 /> with <GamepadIcon /> if Gamepad2 is not available.
-// For this generation, assuming Gamepad2 is available as per typical shadcn/lucide usage.
-// If not found during compilation, this line needs adjustment:
-// <Gamepad2 className="mr-2 h-6 w-6" /> to <GamepadIcon className="mr-2 h-6 w-6" />
-
-// For this exercise, I will assume `Gamepad2` is available. If not, will use `GamepadIcon`.
-// For now, let's proceed as if `Gamepad2` is available.
-// The user's package.json has lucide-react 0.475.0. `Gamepad2` is available.
