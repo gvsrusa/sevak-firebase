@@ -33,7 +33,7 @@ const ObstacleAvoidanceOutputSchema = z.object({
   suggestedAction: z
     .string()
     .describe(
-      'A suggested action for the tractor to take (e.g., stop, slow down, change direction).'styles.
+      'A suggested action for the tractor to take (e.g., stop, slow down, change direction).'
     ),
   confidenceLevel: z.number().describe('Confidence level of obstacle detection, from 0 to 1.'),
 });
@@ -78,3 +78,4 @@ const obstacleAvoidanceFlow = ai.defineFlow(
     return output!;
   }
 );
+
