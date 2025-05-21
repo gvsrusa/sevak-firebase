@@ -1,9 +1,10 @@
 "use client"; // Needs to be client for react-hook-form
 
+import { useState } from "react"; // Import useState
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Image from "next/image";
+import InteractiveMap, { MapMode } from "@/components/ui/InteractiveMap"; // Import MapMode
 
 import { Button } from "@/components/ui/button";
 import {
@@ -37,6 +38,13 @@ export default function TaskManagementPage() {
       homeBase: "",
     },
   });
+
+  const [currentMapMode, setCurrentMapMode] = useState<MapMode>("cuttingArea");
+
+  // Watch form values to pass to the map
+  const cuttingAreaValue = form.watch("cuttingArea");
+  const dropOffPointValue = form.watch("dropOffPoint");
+  const homeBaseValue = form.watch("homeBase");
 
   function onSubmit(data: TaskFormValues) {
     toast({
@@ -75,10 +83,10 @@ export default function TaskManagementPage() {
                         Cutting Area Coordinates
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g., POLYGON((lat1 lon1, lat2 lon2, ...))" {...field} className="bg-background"/>
+                        <Input placeholder="e.g., POLYGON((lat1 lon1, ...))" {...field} className="bg-background"/>
                       </FormControl>
                       <FormDescription>
-                        Define the boundary for the autonomous cutting operation.
+                        Define the boundary for cutting. You can also draw this on the map.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -97,7 +105,7 @@ export default function TaskManagementPage() {
                         <Input placeholder="e.g., POINT(lat lon)" {...field} className="bg-background"/>
                       </FormControl>
                       <FormDescription>
-                        Set the location where harvested material should be dropped off.
+                        Set the drop-off location. You can also set this on the map.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -116,7 +124,7 @@ export default function TaskManagementPage() {
                         <Input placeholder="e.g., POINT(lat lon)" {...field} className="bg-background"/>
                       </FormControl>
                       <FormDescription>
-                        The starting and ending point for the tractor.
+                        Set the home base location. You can also set this on the map.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -130,22 +138,45 @@ export default function TaskManagementPage() {
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg rounded-xl">
+        <Card className="shadow-lg rounded-xl flex flex-col"> {/* Added flex flex-col */}
           <CardHeader>
             <CardTitle className="text-xl text-primary">Map Interface</CardTitle>
             <CardDescription>
-              Visually define task areas on the map. (Interactive map coming soon)
+              Select a mode below, then draw on the map. Click the shape again to delete it.
             </CardDescription>
+            <div className="flex space-x-2 pt-2">
+              <Button
+                variant={currentMapMode === "cuttingArea" ? "default" : "outline"}
+                onClick={() => setCurrentMapMode("cuttingArea")}
+              >
+                Define Cutting Area
+              </Button>
+              <Button
+                variant={currentMapMode === "dropOffPoint" ? "default" : "outline"}
+                onClick={() => setCurrentMapMode("dropOffPoint")}
+              >
+                Set Drop-off
+              </Button>
+              <Button
+                variant={currentMapMode === "homeBase" ? "default" : "outline"}
+                onClick={() => setCurrentMapMode("homeBase")}
+              >
+                Set Home Base
+              </Button>
+            </div>
           </CardHeader>
-          <CardContent className="flex items-center justify-center h-full min-h-[300px] aspect-video">
-             <Image
-                src="https://placehold.co/800x600.png"
-                alt="Placeholder map interface"
-                width={800}
-                height={600}
-                className="object-contain w-full h-full rounded-md"
-                data-ai-hint="farm map"
-              />
+          {/* Ensure CardContent takes remaining space */}
+          <CardContent className="flex-grow flex items-center justify-center h-full min-h-[300px] aspect-video">
+            <InteractiveMap
+              className="w-full h-full rounded-md"
+              currentMode={currentMapMode}
+              onSetCuttingArea={(coords) => form.setValue("cuttingArea", coords, { shouldValidate: true, shouldDirty: true })}
+              onSetDropOffPoint={(coords) => form.setValue("dropOffPoint", coords, { shouldValidate: true, shouldDirty: true })}
+              onSetHomeBase={(coords) => form.setValue("homeBase", coords, { shouldValidate: true, shouldDirty: true })}
+              initialCuttingArea={cuttingAreaValue}
+              initialDropOffPoint={dropOffPointValue}
+              initialHomeBase={homeBaseValue}
+            />
           </CardContent>
         </Card>
       </div>
