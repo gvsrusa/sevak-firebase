@@ -2,15 +2,15 @@
   "documentation_registry": [
     {
       "file_path": "docs/blueprint.md",
-      "description": "User's vision and project blueprint, foundational document for the Sevak project. Referenced for original project directive.",
+      "description": "User's vision and project blueprint. Foundational document for the Sevak project, referenced for original project directives and generally available for context.",
       "type": "User Blueprint",
-      "timestamp": "2025-05-24T02:23:03.000Z"
+      "timestamp": "2025-05-23T23:00:31.000Z"
     },
     {
       "file_path": "docs/PRDMasterPlan.md",
-      "description": "Master Project Plan. Defines requirements for 'Tractor Autonomous Navigation' (Sections 5.B.1, 5.B.4, 5.A.4) and other features, guiding TDD and AI-verifiable outcomes. Referenced for feature development and quality status.",
+      "description": "Master Project Plan. Defines requirements for features like 'Tractor Autonomous Fodder Cutting and Loading' (Sections 5.B.2, 5.B.3, 5.A.4), guiding TDD and AI-verifiable outcomes. Referenced for feature development, quality status, and readiness for next steps.",
       "type": "Master Project Plan",
-      "timestamp": "2025-05-24T03:37:47Z"
+      "timestamp": "2025-05-23T23:00:31.000Z"
     },
     {
       "file_path": "docs/research/initial_strategic_research_report.md",
@@ -143,6 +143,12 @@
       "description": "Granular test plan for 'Tractor Autonomous Navigation'. Confirmed ready and used for successful TDD implementation of the feature. Aligns with [`docs/PRDMasterPlan.md`](docs/PRDMasterPlan.md), London School TDD, includes recursive testing strategy and AI verifiable criteria.",
       "type": "Granular Test Plan",
       "timestamp": "2025-05-24T03:37:47Z"
+    },
+    {
+      "file_path": "docs/tests/granular_test_plans/tractor_autonomous_cutting_loading_test_plan.md",
+      "description": "Comprehensive granular test plan for the 'Tractor Autonomous Fodder Cutting and Loading' feature. Generated based on PRDMasterPlan.md, follows London School TDD, includes recursive testing strategy, and AI verifiable criteria.",
+      "type": "Granular Test Plan",
+      "timestamp": "2025-05-23T23:00:31.000Z"
     }
   ]
 }

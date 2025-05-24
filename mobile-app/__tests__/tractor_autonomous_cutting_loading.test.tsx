@@ -1,26 +1,30 @@
 import { CuttingMechanismController } from '../modules/CuttingMechanismController';
 import { LoadingMechanismController } from '../modules/LoadingMechanismController';
-import TractorCommunicationServiceInstance from '../services/TractorCommunicationService'; // Renaming to avoid conflict with class
+import TractorCommunicationService from '../services/TractorCommunicationService'; // Import the class
 import TractorStatusService from '../services/TractorStatusService';
 import NotificationService from '../services/NotificationService';
 import { MotorController } from '../services/MotorController'; // Named import
 
 // Mocks
 // We mock the modules, and then TypeScript helps us type the mocked instances.
+// Create a mock instance of the class
+const mockTractorCommunicationService = {
+  sendCommand: jest.fn(),
+  sendLowLevelCommand: jest.fn(),
+};
+
+// Mock the module to return our mock instance when imported
 jest.mock('../services/TractorCommunicationService', () => ({
-  __esModule: true, // this property makes it work for default exports
-  default: {
-    sendCommand: jest.fn(),
-    sendLowLevelCommand: jest.fn(), // Add the new method here
-  },
+  __esModule: true,
+  default: jest.fn(() => mockTractorCommunicationService), // Return a factory that provides our mock instance
 }));
 jest.mock('../services/TractorStatusService');
 jest.mock('../services/NotificationService');
-jest.mock('../services/MotorController'); // This mocks the class
 
 // Correctly typed mock for the default exported TractorCommunicationServiceInstance
 // Attempting a simpler cast to bypass potential parsing issues with complex types/interfaces in .tsx
-const mockTractorCommunicationService = TractorCommunicationServiceInstance as any;
+// Ensure the mock is correctly typed for Jest's expectations
+const MockedTractorCommunicationService = TractorCommunicationService as jest.MockedClass<typeof TractorCommunicationService>;
 const mockTractorStatusService = TractorStatusService as jest.Mocked<typeof TractorStatusService>;
 const mockNotificationService = NotificationService as jest.Mocked<typeof NotificationService>;
 // MotorController is a class, its mock is handled by jest.mock above.
@@ -45,12 +49,12 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
 
     // Instantiate controllers with mocked services
     cuttingController = new CuttingMechanismController(
-      mockTractorCommunicationService,
+      new (TractorCommunicationService as any)(), // Instantiate the mock constructor
       mockTractorStatusService,
       mockNotificationService
     );
     loadingController = new LoadingMechanismController(
-      mockTractorCommunicationService,
+      new (TractorCommunicationService as any)(), // Instantiate the mock constructor
       mockTractorStatusService,
       mockNotificationService
     );
@@ -99,7 +103,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
 
       // Re-initialize controller to capture the callback with the new mock implementation
       cuttingController = new CuttingMechanismController(
-        mockTractorCommunicationService,
+        new (TractorCommunicationService as any)(), // Instantiate the mock constructor
         mockTractorStatusService,
         mockNotificationService
       );
@@ -160,7 +164,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
       });
       
       loadingController = new LoadingMechanismController(
-        mockTractorCommunicationService,
+        new (TractorCommunicationService as any)(), // Instantiate the mock constructor
         mockTractorStatusService,
         mockNotificationService
       );
@@ -190,7 +194,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
     test('AVR-5.B.2.1: engageCuttingMotor() should send CUTTING_MOTOR_ON command', async () => {
       // Arrange
       // MotorController is the UUT here. Instantiate it with the *mocked* TractorCommunicationService.
-      const motorControllerUUT = new MotorController(mockTractorCommunicationService);
+      const motorControllerUUT = new MotorController(mockTractorCommunicationService as any);
       mockTractorCommunicationService.sendLowLevelCommand.mockResolvedValue(Promise.resolve() as never); // It's async Promise<void>
 
       // Act
@@ -203,7 +207,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
 
     // Test Case 3.3.2: Disengage Cutting Motor
     test('AVR-5.B.2.2: disengageCuttingMotor() should send CUTTING_MOTOR_OFF command', async () => {
-      const motorControllerUUT = new MotorController(mockTractorCommunicationService);
+      const motorControllerUUT = new MotorController(mockTractorCommunicationService as any);
       mockTractorCommunicationService.sendLowLevelCommand.mockResolvedValue(Promise.resolve() as never);
       
       await motorControllerUUT.disengageCuttingMotor();
@@ -214,7 +218,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
 
     // Test Case 3.3.3: Engage Loading Motor
     test('AVR-5.B.3.1: engageLoadingMotor() should send LOADING_MOTOR_ON command', async () => {
-      const motorControllerUUT = new MotorController(mockTractorCommunicationService);
+      const motorControllerUUT = new MotorController(mockTractorCommunicationService as any);
       mockTractorCommunicationService.sendLowLevelCommand.mockResolvedValue(Promise.resolve() as never);
 
       await motorControllerUUT.engageLoadingMotor();
@@ -225,7 +229,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
 
     // Test Case 3.3.4: Disengage Loading Motor
     test('AVR-5.B.3.2: disengageLoadingMotor() should send LOADING_MOTOR_OFF command', async () => { // Fixed: Added curly brace
-      const motorControllerUUT = new MotorController(mockTractorCommunicationService);
+      const motorControllerUUT = new MotorController(mockTractorCommunicationService as any);
       mockTractorCommunicationService.sendLowLevelCommand.mockResolvedValue(Promise.resolve() as never);
       
       await motorControllerUUT.disengageLoadingMotor();
@@ -241,7 +245,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
     test('AVR-5.A.4.5: updateCuttingStatus() should emit cuttingStatusUpdate event', () => {
       const mockListener = jest.fn();
       // For testing TractorStatusService itself, we'd use a real instance
-      const realStatusService = new (jest.requireActual('../services/TractorStatusService').default)();
+      const realStatusService = jest.requireActual('../services/TractorStatusService').default;
       realStatusService.on('cuttingStatusUpdate', mockListener);
 
       realStatusService.updateCuttingStatus('ACTIVE');
@@ -254,7 +258,7 @@ describe('Tractor Autonomous Fodder Cutting and Loading', () => {
     // Test Case 3.4.2: Emit Loading Status Update
     test('AVR-5.A.4.5: updateLoadingStatus() should emit loadingStatusUpdate event', () => {
       const mockListener = jest.fn();
-      const realStatusService = new (jest.requireActual('../services/TractorStatusService').default)();
+      const realStatusService = jest.requireActual('../services/TractorStatusService').default;
       realStatusService.on('loadingStatusUpdate', mockListener);
 
       realStatusService.updateLoadingStatus('ACTIVE');

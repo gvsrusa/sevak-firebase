@@ -14,7 +14,7 @@ export interface TractorStatus {
 
 type StatusUpdateCallback = (status: Partial<TractorStatus>) => void;
 
-class TractorStatusService {
+export class TractorStatusService {
   private statusUpdateSubscribers: StatusUpdateCallback[] = [];
   private currentStatus: TractorStatus = { // Default initial status
     status: 'Idle',

@@ -5,9 +5,9 @@ import TractorCommunicationService from './TractorCommunicationService'; // Assu
 export type Direction = 'forward' | 'backward' | 'left' | 'right' | 'stop';
 
 export class MotorController {
-  private tractorCommunicationService: typeof TractorCommunicationService;
+  private tractorCommunicationService: TractorCommunicationService; // Changed to instance type
 
-  constructor(tractorCommunicationService: typeof TractorCommunicationService) {
+  constructor(tractorCommunicationService: TractorCommunicationService) { // Expects an instance
     this.tractorCommunicationService = tractorCommunicationService;
   }
 
@@ -26,25 +26,21 @@ export class MotorController {
   // Methods from Test Plan 3.3.x
   async engageCuttingMotor(): Promise<void> {
     console.log('MotorController: engageCuttingMotor called');
-    // @ts-ignore // sendLowLevelCommand will be added to TractorCommunicationService
     await this.tractorCommunicationService.sendLowLevelCommand('CUTTING_MOTOR_ON', { speed: 'optimal' });
   }
 
   async disengageCuttingMotor(): Promise<void> {
     console.log('MotorController: disengageCuttingMotor called');
-    // @ts-ignore
     await this.tractorCommunicationService.sendLowLevelCommand('CUTTING_MOTOR_OFF');
   }
 
   async engageLoadingMotor(): Promise<void> {
     console.log('MotorController: engageLoadingMotor called');
-    // @ts-ignore
     await this.tractorCommunicationService.sendLowLevelCommand('LOADING_MOTOR_ON', { speed: 'standard' });
   }
 
   async disengageLoadingMotor(): Promise<void> {
     console.log('MotorController: disengageLoadingMotor called');
-    // @ts-ignore
     await this.tractorCommunicationService.sendLowLevelCommand('LOADING_MOTOR_OFF');
   }
 }

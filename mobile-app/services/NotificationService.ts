@@ -1,7 +1,7 @@
 // Placeholder for NotificationService
 // Handles in-app and push notifications.
 
-class NotificationService {
+export class NotificationService {
   displaySuccess(message: string) {
     console.log('NotificationService Success:', message);
     // Actual implementation would show a toast or similar UI element
