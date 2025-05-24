@@ -1,22 +1,142 @@
 {
   "documentation_registry": [
     {
-      "file_path": "docs/user_blueprint.md",
-      "description": "The initial user requirements and project vision.",
+      "file_path": "docs/blueprint.md",
+      "description": "User's vision and project blueprint, foundational document for the Sevak project. Referenced for original project directive.",
       "type": "User Blueprint",
-      "timestamp": "2023-10-26T10:05:00Z"
+      "timestamp": "2025-05-24T02:23:03.000Z"
     },
     {
-      "file_path": "docs/master_project_plan.md",
-      "description": "The high-level plan with AI-verifiable tasks and phases for project execution. (Initial draft pending SPARC Specification completion)",
+      "file_path": "docs/PRDMasterPlan.md",
+      "description": "Master Project Plan. Key document for feature requirements, e.g., 'Mobile App Map Interface & Point Definition' (Sections 5.A.1-5.A.4) and 'Mobile App Manual Control Mode' (Section 5.C.2). Referenced for test specification (including for 'Mobile App Map Interface'), TDD implementation, and overall project guidance.",
       "type": "Master Project Plan",
-      "timestamp": "2023-10-26T10:15:00Z"
+      "timestamp": "2025-05-23T21:44:09.418Z"
     },
     {
       "file_path": "docs/research/initial_strategic_research_report.md",
-      "description": "Findings from the initial strategic research phase.",
+      "description": "Comprehensive strategic research report, created during SPARC Specification phase, foundational for project planning.",
       "type": "Research Report",
-      "timestamp": "2023-10-26T10:30:00Z"
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/research/final_report/executive_summary.md",
+      "description": "Executive summary of the foundational research conducted for the Sevak project during the SPARC Specification phase.",
+      "type": "Research Report Component",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/research/high_level_test_strategy_report.md",
+      "description": "Detailed 'High-Level Test Strategy Report' for Sevak, advocating a blended, iterative testing approach, produced during SPARC Specification.",
+      "type": "Test Strategy Report",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/tests/master_acceptance_test_plan.md",
+      "description": "Master Acceptance Test Plan, updated and verified. Section 5 revised to reflect PWA context for task_management_ui_ux.md test category, including tools like Playwright/Cypress and Lighthouse PWA audits.",
+      "type": "Test Plan",
+      "timestamp": "2025-05-23T20:46:00.000Z"
+    },
+    {
+      "file_path": "docs/tests/high_level_acceptance_tests/autonomous_operation.md",
+      "description": "High-Level End-to-End Acceptance Test for Sevak's autonomous operation capabilities.",
+      "type": "High-Level Acceptance Test",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/tests/high_level_acceptance_tests/obstacle_avoidance.md",
+      "description": "High-Level End-to-End Acceptance Test for Sevak's obstacle avoidance capabilities.",
+      "type": "High-Level Acceptance Test",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/tests/high_level_acceptance_tests/",
+      "description": "Collection of High-Level Acceptance Tests (HLTs). Verified updates to individual HLTs within this collection to incorporate PWA context and `mvllow/next-pwa-template` integration, particularly for UI/UX and system interaction tests.",
+      "type": "Documentation Collection (HLTs)",
+      "timestamp": "2025-05-23T20:46:00.000Z"
+    },
+    {
+      "file_path": "docs/research/",
+      "description": "Directory containing the hierarchical research documentation structure created for the Sevak project during SPARC Specification.",
+      "type": "Documentation Collection (Research)",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/user_manual_draft_v0.9.pdf",
+      "description": "Planned draft user manual (simple, pictorial) for the Sevak system, as outlined in PRDMasterPlan.",
+      "type": "User Manual (Draft)",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/troubleshooting_guide_draft_v0.9.pdf",
+      "description": "Planned basic troubleshooting guide for the Sevak system, as outlined in PRDMasterPlan.",
+      "type": "Troubleshooting Guide (Draft)",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/pilot_plan.md",
+      "description": "Planned pilot deployment plan for Sevak V1, as outlined in PRDMasterPlan.",
+      "type": "Plan Document",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/pilot_feedback/survey_template.md",
+      "description": "Planned feedback survey template for pilot users of Sevak V1, as outlined in PRDMasterPlan.",
+      "type": "Survey Template",
+      "timestamp": "2025-05-24T00:23:12.000Z"
+    },
+    {
+      "file_path": "docs/tests/high_level_acceptance_tests/task_management_ui_ux.md",
+      "description": "High-Level Acceptance Test for Task Management UI/UX. Includes test `UIX-002: Real-time Tractor Status Display`, supported by the 'Mobile App Status Monitoring' feature. Revised for PWA context and referenced in successful feature implementation.",
+      "type": "High-Level Acceptance Test",
+      "timestamp": "2025-05-24T02:12:54Z"
+    },
+    {
+      "file_path": "docs/research/github_template_research_report.md",
+      "description": "Research report that recommended the `mvllow/next-pwa-template`, reviewed as part of the SPARC Specification update for PWA integration.",
+      "type": "Research Report",
+      "timestamp": "2025-05-23T20:46:00.000Z"
+    },
+    {
+      "file_path": "docs/template_integration_guide.md",
+      "description": "Guidance document for integrating the `mvllow/next-pwa-template`, consulted during the SPARC Specification update.",
+      "type": "Integration Guide",
+      "timestamp": "2025-05-23T20:46:00.000Z"
+    },
+    {
+      "file_path": "docs/tests/high_level_acceptance_tests/full_system_integration_launch_readiness.md",
+      "description": "HLT for Full System Integration & Launch Readiness, updated and verified. FSILR-002 (safety) refers to PWA UI for E-Stop; FSILR-004 (connectivity) refocused on PWA-tractor Wi-Fi interaction, network conditions, and OTA updates via PWA. AI verifiable criteria updated.",
+      "type": "High-Level Acceptance Test",
+      "timestamp": "2025-05-23T20:46:00.000Z"
+    },
+    {
+      "file_path": "docs/framework_scaffold_report.md",
+      "description": "Comprehensive report detailing all scaffolding activities, tools used, and the initial project structure for the Sevak Mobile Companion Application. Created during framework scaffolding.",
+      "type": "Scaffolding Report",
+      "timestamp": "2025-05-24T01:30:32.000Z"
+    },
+    {
+      "file_path": "docs/architecture/system_architecture.md",
+      "description": "System architecture document. Provided context for the `ManualControlScreen` component within the mobile application's UI layer during the successful TDD implementation of the 'Mobile App Manual Control Mode' feature.",
+      "type": "Architecture Document",
+      "timestamp": "2025-05-23T21:32:25.000Z"
+    },
+    {
+      "file_path": "docs/tests/granular_test_plans/mobile_app_status_monitoring_test_plan.md",
+      "description": "Granular test plan for 'Mobile App Status Monitoring'. Details test cases mapped to [`docs/PRDMasterPlan.md`](docs/PRDMasterPlan.md:0), follows London School TDD, includes recursive testing strategy, and AI verifiable criteria. Referenced during the successful implementation of the feature.",
+      "type": "Granular Test Plan",
+      "timestamp": "2025-05-24T02:12:54Z"
+    },
+    {
+      "file_path": "docs/tests/granular_test_plans/mobile_app_manual_control_test_plan.md",
+      "description": "Granular test plan for 'Mobile App Manual Control Mode'. Referenced during successful TDD implementation and coder's self-reflection. Defines AI Verifiable End Results (AVRs) and was key to the feature's development.",
+      "type": "Granular Test Plan",
+      "timestamp": "2025-05-23T21:32:25.000Z"
+    },
+    {
+      "file_path": "docs/tests/granular_test_plans/mobile_app_map_interface_test_plan.md",
+      "description": "Comprehensive granular test plan for the 'Mobile App Map Interface & Point Definition' feature. Generated, aligns with PRDMasterPlan.md (Sections 5.A.1-5.A.4), follows London School TDD, includes recursive testing strategy and AI verifiable criteria.",
+      "type": "Granular Test Plan",
+      "timestamp": "2025-05-23T21:44:09.418Z"
     }
   ]
 }
