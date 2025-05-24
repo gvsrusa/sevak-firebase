@@ -8,9 +8,9 @@
     },
     {
       "file_path": "docs/PRDMasterPlan.md",
-      "description": "Master Project Plan. Key document for feature requirements, e.g., 'Mobile App Map Interface & Point Definition' (Sections 5.A.1-5.A.4) and 'Mobile App Manual Control Mode' (Section 5.C.2). Referenced for test specification (including for 'Mobile App Map Interface'), TDD implementation, and overall project guidance.",
+      "description": "Master Project Plan. Key for multiple features including 'Mobile App Map Interface & Point Definition' (Sections 5.A.1-4, 5.C.3-4), 'Mobile App Manual Control Mode', and 'Tractor Autonomous Navigation' (Section 5.B.1, 5.A.4, 5.B.4), guiding TDD and AI-verifiable outcomes.",
       "type": "Master Project Plan",
-      "timestamp": "2025-05-23T21:44:09.418Z"
+      "timestamp": "2025-05-24T03:08:43Z"
     },
     {
       "file_path": "docs/research/initial_strategic_research_report.md",
@@ -86,9 +86,9 @@
     },
     {
       "file_path": "docs/tests/high_level_acceptance_tests/task_management_ui_ux.md",
-      "description": "High-Level Acceptance Test for Task Management UI/UX. Includes test `UIX-002: Real-time Tractor Status Display`, supported by the 'Mobile App Status Monitoring' feature. Revised for PWA context and referenced in successful feature implementation.",
+      "description": "High-Level Acceptance Test for Task Management UI/UX. Includes tests supported by successfully implemented features like 'Mobile App Map Interface & Point Definition', 'Mobile App Manual Control Mode', and 'Mobile App Status Monitoring'. Revised for PWA context.",
       "type": "High-Level Acceptance Test",
-      "timestamp": "2025-05-24T02:12:54Z"
+      "timestamp": "2025-05-23T21:55:27.000Z"
     },
     {
       "file_path": "docs/research/github_template_research_report.md",
@@ -116,9 +116,9 @@
     },
     {
       "file_path": "docs/architecture/system_architecture.md",
-      "description": "System architecture document. Provided context for the `ManualControlScreen` component within the mobile application's UI layer during the successful TDD implementation of the 'Mobile App Manual Control Mode' feature.",
+      "description": "System architecture document. Provided context for `MapScreen.tsx` and service interactions during the successful TDD implementation of the 'Mobile App Map Interface & Point Definition' feature, and for other components like `ManualControlScreen.tsx`.",
       "type": "Architecture Document",
-      "timestamp": "2025-05-23T21:32:25.000Z"
+      "timestamp": "2025-05-23T21:55:27.000Z"
     },
     {
       "file_path": "docs/tests/granular_test_plans/mobile_app_status_monitoring_test_plan.md",
@@ -134,9 +134,15 @@
     },
     {
       "file_path": "docs/tests/granular_test_plans/mobile_app_map_interface_test_plan.md",
-      "description": "Comprehensive granular test plan for the 'Mobile App Map Interface & Point Definition' feature. Generated, aligns with PRDMasterPlan.md (Sections 5.A.1-5.A.4), follows London School TDD, includes recursive testing strategy and AI verifiable criteria.",
+      "description": "Granular test plan for 'Mobile App Map Interface & Point Definition'. Guided successful TDD implementation and verification of the feature, aligning with PRDMasterPlan.md requirements.",
       "type": "Granular Test Plan",
-      "timestamp": "2025-05-23T21:44:09.418Z"
+      "timestamp": "2025-05-23T21:55:27.000Z"
+    },
+    {
+      "file_path": "docs/tests/granular_test_plans/tractor_autonomous_navigation_test_plan.md",
+      "description": "Comprehensive granular test plan for the 'Tractor Autonomous Navigation' feature. Aligns with PRDMasterPlan.md (Section 5.B.1, AVRs-AN-1 to AVR-AN-8), follows London School TDD, includes recursive testing strategy, and AI verifiable criteria. Generated as part of the test specification phase.",
+      "type": "Granular Test Plan",
+      "timestamp": "2025-05-24T03:08:43Z"
     }
   ]
 }
