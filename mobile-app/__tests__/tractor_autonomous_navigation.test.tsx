@@ -9,6 +9,7 @@ import { LidarSensor, LidarScanData } from '../services/LidarSensor';
 import { UltrasonicSensor } from '../services/UltrasonicSensor';
 import NotificationService from '../services/NotificationService'; // Assuming this exists from previous tasks
 import TractorStatusService from '../services/TractorStatusService'; // Assuming this exists
+import TractorCommunicationService from '../services/TractorCommunicationService'; // Added for MotorController dependency
 
 // Mock implementations
 jest.mock('../services/GPSModule');
@@ -18,6 +19,7 @@ jest.mock('../services/LidarSensor');
 jest.mock('../services/UltrasonicSensor');
 jest.mock('../services/NotificationService');
 jest.mock('../services/TractorStatusService');
+jest.mock('../services/TractorCommunicationService'); // Added mock
 jest.mock('../modules/PathPlanner');
 jest.mock('../modules/GeofenceMonitor');
 jest.mock('../modules/ObstacleDetectionModule');
@@ -31,6 +33,7 @@ describe('Tractor Autonomous Navigation', () => {
   let mockUltrasonicSensor: jest.Mocked<UltrasonicSensor>;
   let mockNotificationService: jest.Mocked<typeof NotificationService>;
   let mockTractorStatusService: jest.Mocked<typeof TractorStatusService>;
+  let mockTractorCommunicationService: jest.Mocked<typeof TractorCommunicationService>; // Added mock instance
   let mockPathPlanner: jest.Mocked<PathPlanner>;
   let mockGeofenceMonitor: jest.Mocked<GeofenceMonitor>;
   let mockObstacleDetectionModule: jest.Mocked<ObstacleDetectionModule>;
@@ -41,7 +44,8 @@ describe('Tractor Autonomous Navigation', () => {
     // Re-assign mocks before each test
     mockGPSModule = new GPSModule() as jest.Mocked<GPSModule>;
     mockIMUModule = new IMUModule() as jest.Mocked<IMUModule>;
-    mockMotorController = new MotorController() as jest.Mocked<MotorController>;
+    mockTractorCommunicationService = TractorCommunicationService as jest.Mocked<typeof TractorCommunicationService>; // Instantiate mock
+    mockMotorController = new MotorController(mockTractorCommunicationService) as jest.Mocked<MotorController>; // Pass mock
     mockLidarSensor = new LidarSensor() as jest.Mocked<LidarSensor>;
     mockUltrasonicSensor = new UltrasonicSensor() as jest.Mocked<UltrasonicSensor>;
     mockNotificationService = NotificationService as jest.Mocked<typeof NotificationService>;

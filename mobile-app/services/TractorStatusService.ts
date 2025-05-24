@@ -66,6 +66,61 @@ class TractorStatusService {
       }
     });
   }
+
+  // Methods to be called by other services/controllers to update specific statuses
+  // which then emit general status updates.
+  // These align with Test Plan sections 3.4.1 and 3.4.2
+  public updateCuttingStatus(status: 'ENGAGING' | 'ACTIVE' | 'DISENGAGING' | 'COMPLETE' | 'ERROR', errorDetails?: string): void {
+    const partialUpdate: Partial<TractorStatus> = { cutterStatus: status as TractorStatus['cutterStatus'] };
+    if (status === 'ERROR' && errorDetails) {
+      // Potentially add error details to the status or log them
+      console.error(`[TractorStatusService] Cutting Error: ${errorDetails}`);
+    }
+    this._emitStatusUpdate(partialUpdate);
+    // Emitting a more specific event type as per test plan for CuttingMechanismController
+    this._emitTypedEvent('cuttingStatusUpdate', status);
+  }
+
+  public updateLoadingStatus(status: 'ENGAGING' | 'ACTIVE' | 'DISENGAGING' | 'COMPLETE' | 'ERROR', errorDetails?: string): void {
+    const partialUpdate: Partial<TractorStatus> = { loaderStatus: status as TractorStatus['loaderStatus'] };
+    if (status === 'ERROR' && errorDetails) {
+      console.error(`[TractorStatusService] Loading Error: ${errorDetails}`);
+    }
+    this._emitStatusUpdate(partialUpdate);
+    // Emitting a more specific event type as per test plan for LoadingMechanismController
+    this._emitTypedEvent('loadingStatusUpdate', status);
+  }
+
+  // More generic event emitter for typed events if needed by controllers
+  // This is a conceptual addition based on how controllers might listen
+  private typedEventListeners: { [eventName: string]: ((payload: any) => void)[] } = {};
+
+  public on(eventName: string, callback: (payload: any) => void): { unsubscribe: () => void } {
+    if (!this.typedEventListeners[eventName]) {
+      this.typedEventListeners[eventName] = [];
+    }
+    this.typedEventListeners[eventName].push(callback);
+    console.log(`[TractorStatusService] New typed listener for ${eventName}. Total: ${this.typedEventListeners[eventName].length}`);
+    return {
+      unsubscribe: () => {
+        this.typedEventListeners[eventName] = this.typedEventListeners[eventName].filter(cb => cb !== callback);
+        console.log(`[TractorStatusService] Typed listener removed for ${eventName}. Total: ${this.typedEventListeners[eventName].length}`);
+      },
+    };
+  }
+
+  private _emitTypedEvent(eventName: string, payload: any): void {
+    if (this.typedEventListeners[eventName]) {
+      console.log(`[TractorStatusService] Emitting typed event ${eventName} with payload:`, payload);
+      this.typedEventListeners[eventName].forEach(callback => {
+        try {
+          callback(payload);
+        } catch (error) {
+          console.error(`[TractorStatusService] Error in typed event callback for ${eventName}:`, error);
+        }
+      });
+    }
+  }
 }
 
 // Ensure this is a default export as per the mock in manual_control.test.tsx

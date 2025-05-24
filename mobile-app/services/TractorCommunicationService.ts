@@ -9,6 +9,17 @@ class TractorCommunicationService {
     );
   }
 
+  public async sendLowLevelCommand(command: string, payload?: any): Promise<void> {
+    // Similar to sendCommand, but perhaps for more direct hardware interaction
+    // For now, logs it. Tests will mock this.
+    console.log(
+      `[TractorCommunicationService] Sending low-level command: ${command}`,
+      payload !== undefined ? `with payload: ${JSON.stringify(payload)}` : ''
+    );
+    // Simulate async operation
+    return Promise.resolve();
+  }
+
   // Example of a more specific command method if needed, though generic sendCommand is used by tests
   // public moveForward(speed: number): void {
   //   this.sendCommand('MOVE_FORWARD', { speed });

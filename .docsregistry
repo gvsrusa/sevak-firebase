@@ -8,9 +8,9 @@
     },
     {
       "file_path": "docs/PRDMasterPlan.md",
-      "description": "Master Project Plan. Key for multiple features including 'Mobile App Map Interface & Point Definition' (Sections 5.A.1-4, 5.C.3-4), 'Mobile App Manual Control Mode', and 'Tractor Autonomous Navigation' (Section 5.B.1, 5.A.4, 5.B.4), guiding TDD and AI-verifiable outcomes.",
+      "description": "Master Project Plan. Defines requirements for 'Tractor Autonomous Navigation' (Sections 5.B.1, 5.B.4, 5.A.4) and other features, guiding TDD and AI-verifiable outcomes. Referenced for feature development and quality status.",
       "type": "Master Project Plan",
-      "timestamp": "2025-05-24T03:08:43Z"
+      "timestamp": "2025-05-24T03:37:47Z"
     },
     {
       "file_path": "docs/research/initial_strategic_research_report.md",
@@ -38,15 +38,15 @@
     },
     {
       "file_path": "docs/tests/high_level_acceptance_tests/autonomous_operation.md",
-      "description": "High-Level End-to-End Acceptance Test for Sevak's autonomous operation capabilities.",
+      "description": "High-Level End-to-End Acceptance Test for Sevak's autonomous operation capabilities (e.g., AUT-001). Supported by the 'Tractor Autonomous Navigation' feature implementation.",
       "type": "High-Level Acceptance Test",
-      "timestamp": "2025-05-24T00:23:12.000Z"
+      "timestamp": "2025-05-24T03:37:47Z"
     },
     {
       "file_path": "docs/tests/high_level_acceptance_tests/obstacle_avoidance.md",
-      "description": "High-Level End-to-End Acceptance Test for Sevak's obstacle avoidance capabilities.",
+      "description": "High-Level End-to-End Acceptance Test for Sevak's obstacle avoidance capabilities (e.g., OBS-001). Supported by the 'Tractor Autonomous Navigation' feature implementation.",
       "type": "High-Level Acceptance Test",
-      "timestamp": "2025-05-24T00:23:12.000Z"
+      "timestamp": "2025-05-24T03:37:47Z"
     },
     {
       "file_path": "docs/tests/high_level_acceptance_tests/",
@@ -116,9 +116,9 @@
     },
     {
       "file_path": "docs/architecture/system_architecture.md",
-      "description": "System architecture document. Provided context for `MapScreen.tsx` and service interactions during the successful TDD implementation of the 'Mobile App Map Interface & Point Definition' feature, and for other components like `ManualControlScreen.tsx`.",
+      "description": "System architecture document. Provides architectural context for the 'Tractor Autonomous Navigation' feature and its components, as well as other features like 'Mobile App Map Interface & Point Definition' and 'Mobile App Manual Control Mode'.",
       "type": "Architecture Document",
-      "timestamp": "2025-05-23T21:55:27.000Z"
+      "timestamp": "2025-05-24T03:37:47Z"
     },
     {
       "file_path": "docs/tests/granular_test_plans/mobile_app_status_monitoring_test_plan.md",
@@ -140,9 +140,9 @@
     },
     {
       "file_path": "docs/tests/granular_test_plans/tractor_autonomous_navigation_test_plan.md",
-      "description": "Comprehensive granular test plan for the 'Tractor Autonomous Navigation' feature. Aligns with PRDMasterPlan.md (Section 5.B.1, AVRs-AN-1 to AVR-AN-8), follows London School TDD, includes recursive testing strategy, and AI verifiable criteria. Generated as part of the test specification phase.",
+      "description": "Granular test plan for 'Tractor Autonomous Navigation'. Confirmed ready and used for successful TDD implementation of the feature. Aligns with [`docs/PRDMasterPlan.md`](docs/PRDMasterPlan.md), London School TDD, includes recursive testing strategy and AI verifiable criteria.",
       "type": "Granular Test Plan",
-      "timestamp": "2025-05-24T03:08:43Z"
+      "timestamp": "2025-05-24T03:37:47Z"
     }
   ]
 }
